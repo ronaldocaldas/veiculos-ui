@@ -8,6 +8,9 @@ import localePt from '@angular/common/locales/pt';
 import { CoreModule } from './core/core.module';
 import { VeiculosModule } from './veiculos/veiculos.module';
 
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
 import { AppComponent } from './app.component';
 import { ToastyModule } from 'ng2-toasty';
 
@@ -24,9 +27,11 @@ registerLocaleData(localePt, 'pt-BR');
     VeiculosModule,
     CoreModule,
     HttpModule,
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
+    ConfirmDialogModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' },
+    ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

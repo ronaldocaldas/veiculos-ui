@@ -1,3 +1,6 @@
+import { ConfirmationService } from 'primeng/api';
+
+import { ToastyService } from 'ng2-toasty';
 import { Headers, Http } from '@angular/http';
 
 import { VeiculoService } from './../veiculo.service';
@@ -15,7 +18,10 @@ export class VeiculosListagemComponent implements OnInit {
   veiculos = [];
   @ViewChild('tabela') grid;
 
-  constructor(private veiculosService: VeiculoService) { }
+  constructor(private veiculosService: VeiculoService,
+    private toasty: ToastyService,
+    private confirmation: ConfirmationService
+  ) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -26,10 +32,19 @@ export class VeiculosListagemComponent implements OnInit {
       .then(veiculos => this.veiculos = veiculos);
   }
 
+  confirmarExclusao(veiculo: any) {
+    this.confirmation.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(veiculo);
+      }
+    });
+  }
   excluir(veiculo: any) {
     this.veiculosService.excluir(veiculo.codigo)
       .then(() => {
         this.pesquisar();
       });
+    this.toasty.success('Veículo excluído com sucesso!');
   }
 }

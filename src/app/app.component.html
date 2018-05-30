@@ -2,3 +2,7 @@
 <!-- <app-veiculo-cadastro></app-veiculo-cadastro> -->
 <app-veiculos-listagem></app-veiculos-listagem>
 <ng2-toasty></ng2-toasty>
+<p-confirmDialog header="Confirmação" icon="fa fa-question-circle" #corfirmacao>
+    <p-footer type="button" pButton icon="fa-check" (click)="corfirmacao.accept()" label="Sim"></p-footer>
+    <p-footer type="button" pButton icon="fa-times" (click)="corfirmacao.reject()" label="Não"></p-footer>
+</p-confirmDialog>
