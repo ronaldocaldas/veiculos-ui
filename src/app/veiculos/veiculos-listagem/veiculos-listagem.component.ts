@@ -1,7 +1,7 @@
 import { Headers, Http } from '@angular/http';
 
 import { VeiculoService } from './../veiculo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Veiculo } from './../../core/model';
 
@@ -13,6 +13,7 @@ import { Veiculo } from './../../core/model';
 export class VeiculosListagemComponent implements OnInit {
 
   veiculos = [];
+  @ViewChild('tabela') grid;
 
   constructor(private veiculosService: VeiculoService) { }
 
@@ -23,5 +24,12 @@ export class VeiculosListagemComponent implements OnInit {
   pesquisar() {
     this.veiculosService.pesquisar()
       .then(veiculos => this.veiculos = veiculos);
+  }
+
+  excluir(veiculo: any) {
+    this.veiculosService.excluir(veiculo.codigo)
+      .then(() => {
+        this.pesquisar();
+      });
   }
 }

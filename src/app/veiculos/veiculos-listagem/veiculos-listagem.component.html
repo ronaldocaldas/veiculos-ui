@@ -28,9 +28,10 @@
                 </ng-template>
           </p-column>
           <p-column styleClass="col-acoes">
-              <ng-template pTemplate="body">
+              <ng-template let-vei="rowData" pTemplate="body">
                 <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                <button pButton icon="fa-trash" pTooltip="Excluir"
+                tooltipPosition="top" (click)="excluir(vei)" ></button>
               </ng-template>
             </p-column>
       </p-dataTable>

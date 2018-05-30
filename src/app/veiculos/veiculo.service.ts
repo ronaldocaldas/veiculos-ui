@@ -31,4 +31,10 @@ export class VeiculoService {
       .then(response => response.json().content);
   }
 
+  excluir(codigo: number): Promise<any> {
+    return this.http.delete(`${this.veiculosUrl}/${codigo}`)
+    .toPromise()
+    .then(() => null);
+  }
+
 }
