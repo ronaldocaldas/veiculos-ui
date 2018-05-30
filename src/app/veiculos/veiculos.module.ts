@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ import { VeiculosListagemComponent } from './veiculos-listagem/veiculos-listagem
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     InputTextModule,
     ButtonModule,
     DataTableModule,
