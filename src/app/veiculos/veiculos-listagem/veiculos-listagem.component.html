@@ -24,9 +24,12 @@
                   {{ loc.locado ? 'Locado' : 'Disponível' }}
                 </ng-template>
           </p-column>
+
+          name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio"
+
           <p-column field="dataDataEntrega" header="Entrega" styleClass="col-data">
-              <ng-template let-lanc="rowData" pTemplate="body">
-                  {{lanc.dataDataEntrega | date:'dd/MM/yyyy'}}
+              <ng-template let-lanc="rowData"   pTemplate="body">
+                  {{lanc.manutencao | date:'dd/MM/yyyy'}}
                 </ng-template>
           </p-column>
           <p-column styleClass="col-acoes">

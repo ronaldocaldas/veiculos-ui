@@ -15,14 +15,17 @@ import { ConfirmationService } from 'primeng/api';
 import { AppComponent } from './app.component';
 import { VeiculosListagemComponent } from './veiculos/veiculos-listagem/veiculos-listagem.component';
 import { VeiculoCadastroComponent } from './veiculos/veiculo-cadastro/veiculo-cadastro.component';
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
 const routes: Routes = [
-  {path: '', redirectTo: 'veiculos', pathMatch: 'full'},
-  {path: 'veiculos', component: VeiculosListagemComponent},
+  { path: '', redirectTo: 'veiculos', pathMatch: 'full' },
+  { path: 'veiculos', component: VeiculosListagemComponent },
   { path: 'veiculos/novo', component: VeiculoCadastroComponent },
-  { path: 'veiculos/:codigo', component: VeiculoCadastroComponent }
+  { path: 'veiculos/:codigo', component: VeiculoCadastroComponent },
+  { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
+  { path: '**', redirectTo: 'pagina-nao-encontrada' }
 ];
 
 @NgModule({

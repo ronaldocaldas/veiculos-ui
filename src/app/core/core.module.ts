@@ -9,6 +9,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ErrorHandlerService } from './error-handler.service';
 import { Veiculo } from './model';
 import { VeiculoService } from '../veiculos/veiculo.service';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+
 import { RouterModule } from '@angular/router';
 
 
@@ -20,7 +22,7 @@ import { RouterModule } from '@angular/router';
     ToastyModule.forRoot(),
     ConfirmDialogModule,
   ],
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   exports: [
     NavbarComponent,
     ToastyModule,

@@ -40,6 +40,6 @@ import { VeiculosListagemComponent } from './veiculos-listagem/veiculos-listagem
     SharedModule
   ],
   declarations: [VeiculosListagemComponent, VeiculoCadastroComponent],
-  exports: [VeiculosListagemComponent, VeiculoCadastroComponent]
+  exports: []
 })
 export class VeiculosModule { }
