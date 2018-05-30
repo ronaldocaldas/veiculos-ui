@@ -35,6 +35,7 @@ export class VeiculoService {
     return this.http.delete(`${this.veiculosUrl}/${codigo}`)
     .toPromise()
     .then(() => null);
+
   }
 
 }

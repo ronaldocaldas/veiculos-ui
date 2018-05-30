@@ -1,3 +1,4 @@
+import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
 
 import { ToastyService } from 'ng2-toasty';
@@ -19,6 +20,7 @@ export class VeiculosListagemComponent implements OnInit {
   @ViewChild('tabela') grid;
 
   constructor(private veiculosService: VeiculoService,
+    private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService
   ) { }
@@ -29,7 +31,8 @@ export class VeiculosListagemComponent implements OnInit {
 
   pesquisar() {
     this.veiculosService.pesquisar()
-      .then(veiculos => this.veiculos = veiculos);
+      .then(veiculos => this.veiculos = veiculos)
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
   confirmarExclusao(veiculo: any) {
@@ -44,7 +47,9 @@ export class VeiculosListagemComponent implements OnInit {
     this.veiculosService.excluir(veiculo.codigo)
       .then(() => {
         this.pesquisar();
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+
     this.toasty.success('Veículo excluído com sucesso!');
   }
 }
