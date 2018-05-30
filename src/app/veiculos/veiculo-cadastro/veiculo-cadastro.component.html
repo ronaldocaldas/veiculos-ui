@@ -4,6 +4,7 @@
       <div class="ui-g-12">
         <h1>Novo Veículo</h1>
       </div>
+
       <div class="ui-g-12">
         <p-selectButton [options]="cambios"></p-selectButton>
       </div>
@@ -12,48 +13,69 @@
         <label>Modelo</label>
         <input pInputText type="text" name="modelo"
           ngModel required #modelo="ngModel" minlength="5">
+          <app-message [control]="modelo" error="required"
+          text="Informe o modelo"></app-message>
+        <app-message [control]="modelo" error="minlength"
+          text="Mínimo de {{ modelo.errors?.minlength?.requiredLength }} caracteres"></app-message>
       </div>
+
       <div class="ui-g-12 ui-md-1 ui-fluid">
         <label>Placa</label>
         <p-inputMask name="placa" mask="aaa 9999"
         ngModel #placa="ngModel" required></p-inputMask>
+        <app-message [control]="placa" error="required"
+        text="Informe a placa"></app-message>
       </div>
+
       <div class="ui-g-12 ui-md-2  ui-fluid">
         <label>Valor Seguro</label>
-        <input pInputText type="text" placeholder="R$ 0,00" name="valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: 'false'}"
-          ngModel required>
+        <input pInputText type="text" placeholder="R$ 0,00" name="valor" currencyMask
+        [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: 'false'}"
+          ngModel #securo="ngModel" required>
+          <app-message [control]="securo" error="required"
+          text="Informe o valor do seguro"></app-message>
       </div>
+
       <div class="ui-g-12 ui-md-3  ui-fluid">
         <label>Manutenção</label>
         <p-calendar dateFormat="dd/mm/yy" name="dataManutencao"
-        [inline]=false [readonlyInput]=false [showIcon]=true >
+        [inline]=false [readonlyInput]=false [showIcon]=true
+        ngModel #manutencao="ngModel" required >
         </p-calendar>
+        <app-message [control]="manutencao" error="required" text="Informe uma data para manutenção"></app-message>
+
       </div>
+
       <div class="ui-g-12 ui-md-4 ui-fluid">
           <label>Marca</label>
           <p-dropdown [options]="marcas" placeholder="Selecione" [filter]="true"
             [autoWidth]="false"></p-dropdown>
-        </div>
+      </div>
+
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Categoria</label>
         <p-dropdown [options]="categorias" placeholder="Selecione"
-          [autoWidth]="false"></p-dropdown>
+          [autoWidth]="false" name="categoria" ngModel #categoria required>
+        </p-dropdown>
       </div>
+
       <div class="ui-g-12 ui-md-4 ui-fluid">
         <label>Tipo veículo</label>
         <p-dropdown [options]="tipos" placeholder="Selecione"
-          [autoWidth]="false"></p-dropdown>
+          [autoWidth]="false"  name="tipo" ngModel #tipo required>
+        </p-dropdown>
       </div>
+
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
         <textarea pInputTextarea rows="3"></textarea>
       </div>
+
       <div class="ui-g-12">
         <button pButton type="submit" label="Salvar"></button>
         <button pButton type="submit" label="Novo"></button>
         <a href="javascript:;">Voltar para a pesquisa</a>
       </div>
-
 
     </div>
   </form>

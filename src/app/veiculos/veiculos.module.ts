@@ -13,6 +13,7 @@ import { SelectButtonModule } from 'primeng/components/selectbutton/selectbutton
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 
+import { SharedModule } from './../shared/shared.module';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 
@@ -33,7 +34,8 @@ import { VeiculosListagemComponent } from './veiculos-listagem/veiculos-listagem
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    SharedModule
   ],
   declarations: [VeiculosListagemComponent, VeiculoCadastroComponent],
   exports: [VeiculosListagemComponent, VeiculoCadastroComponent]
