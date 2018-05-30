@@ -1,4 +1,11 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
+import { ToastyService } from 'ng2-toasty';
+import { Veiculo } from '../../core/model';
+import { VeiculoService } from '../veiculo.service';
+import { ErrorHandlerService } from '../../core/error-handler.service';
+
 
 @Component({
   selector: 'app-veiculo-cadastro',
@@ -8,18 +15,18 @@ import { Component, OnInit } from '@angular/core';
 export class VeiculoCadastroComponent implements OnInit {
 
   cambios = [
-    { label: 'Manual', value: 'MANUAL' },
-    { label: 'Automático', value: 'AUTOMATICO' },
+    { label: 'Manual', value: 'Manual' },
+    { label: 'Automático', value: 'Automático' },
   ];
   categorias = [
-    { label: 'Hatch', value: 'HACTH' },
-    { label: 'Sedan', value: 'SEDAN' },
-    { label: 'Suv', value: 'SUV' },
+    { label: 'Hatch', value: 'Hatch' },
+    { label: 'Sedan', value: 'Sedan' },
+    { label: 'Suv', value: 'Suv' },
   ];
   tipos = [
-    { label: 'Econômico', value: 'ECO' },
-    { label: 'Executivo', value: 'EXE' },
-    { label: 'Adaptado', value: 'ADA' },
+    { label: 'Econômico', value: 'Econômico' },
+    { label: 'Executivo', value: 'Executivo' },
+    { label: 'Adaptado', value: 'Adaptado' },
   ];
 
   marcas = [
@@ -30,9 +37,23 @@ export class VeiculoCadastroComponent implements OnInit {
     { label: 'Honda', value: 'HOND' },
     { label: 'Hyundai', value: 'HYUD' },
   ];
-  constructor() { }
+
+  veiculo = new Veiculo();
+  constructor(
+    private veiculoService: VeiculoService,
+    private toasty: ToastyService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
   }
 
+  salvar(form: FormControl) {
+    this.veiculoService.adicionar(this.veiculo)
+      .then(() => {
+        this.toasty.success('Veículo adicionado com sucesso!');
+        form.reset();
+        this.veiculo = new Veiculo();
+      })
+      .catch(erro => this.errorHandler);
+  }
 }

@@ -1,11 +1,13 @@
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CoreModule } from './core/core.module';
+import { VeiculosModule } from './veiculos/veiculos.module';
 
 import { AppComponent } from './app.component';
-import { VeiculosModule } from './veiculos/veiculos.module';
+import { ToastyModule } from 'ng2-toasty';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,10 @@ import { VeiculosModule } from './veiculos/veiculos.module';
     BrowserAnimationsModule,
     VeiculosModule,
     CoreModule,
+    HttpModule,
+    ToastyModule.forRoot()
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
