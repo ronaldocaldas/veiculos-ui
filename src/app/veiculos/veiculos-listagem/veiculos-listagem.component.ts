@@ -1,13 +1,16 @@
-import { ErrorHandlerService } from './../../core/error-handler.service';
 import { ConfirmationService } from 'primeng/api';
 
 import { ToastyService } from 'ng2-toasty';
+
 import { Headers, Http } from '@angular/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { VeiculoService } from './../veiculo.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { Veiculo } from './../../core/model';
+import { ErrorHandlerService } from './../../core/error-handler.service';
+
+
 
 @Component({
   selector: 'app-veiculos-listagem',
@@ -22,11 +25,13 @@ export class VeiculosListagemComponent implements OnInit {
   constructor(private veiculosService: VeiculoService,
     private errorHandler: ErrorHandlerService,
     private toasty: ToastyService,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private title: Title
   ) { }
 
   ngOnInit() {
     this.pesquisar();
+    this.title.setTitle('Pesquisa de lancamentos');
   }
 
   pesquisar() {

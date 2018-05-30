@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -45,17 +46,18 @@ export class VeiculoCadastroComponent implements OnInit {
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private title: Title) { }
 
   ngOnInit() {
     const codigoVeiculo = this.route.snapshot.params['codigo'];
 
+    this.title.setTitle('Novo veículo');
     if (codigoVeiculo) {
       this.carregarVeiculo(codigoVeiculo);
 
     }
   }
-
 
   adicionarVeiculo(form: FormControl) {
     this.veiculoService.adicionar(this.veiculo)
@@ -71,9 +73,9 @@ export class VeiculoCadastroComponent implements OnInit {
     this.veiculoService.buscarPorCodigo(codigo)
       .then(veiculo => {
         this.veiculo = veiculo;
+        this.atualizarTituloEdicao();
       })
       .catch(erro => this.errorHandler.handle(erro));
-
   }
   salvar(form: FormControl) {
     if (this.editando) {
@@ -88,10 +90,15 @@ export class VeiculoCadastroComponent implements OnInit {
       .then(veiculo => {
         this.veiculo = veiculo;
         this.toasty.success('Veículo alterado com sucesso!');
+        this.atualizarTituloEdicao();
       }).catch(erro => this.errorHandler.handle(erro));
   }
 
   get editando() {
     return Boolean(this.veiculo.codigo);
+  }
+
+  atualizarTituloEdicao() {
+    this.title.setTitle(`Edição de veículo: ${this.veiculo.modelo}`);
   }
 }

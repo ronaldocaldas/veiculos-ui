@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -32,7 +33,8 @@ import { RouterModule } from '@angular/router';
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     ErrorHandlerService,
     ConfirmationService,
-    VeiculoService
+    VeiculoService,
+    Title
   ]
 })
 export class CoreModule { }
