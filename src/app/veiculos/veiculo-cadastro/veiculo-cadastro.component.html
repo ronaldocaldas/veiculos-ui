@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form autocomplete="off">
     <div class="ui-g">
       <div class="ui-g-12">
         <h1>Novo Veículo</h1>
@@ -10,7 +10,8 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid">
         <label>Modelo</label>
-        <input pInputText type="text">
+        <input pInputText type="text" name="modelo"
+          ngModel required #modelo="ngModel" minlength="5">
       </div>
       <div class="ui-g-12 ui-md-1 ui-fluid">
         <label>Placa</label>
