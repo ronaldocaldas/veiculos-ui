@@ -12,18 +12,16 @@ export class VeiculosListagemComponent {
       marca: 'FIAT',
       modelo: 'Uno',
       placa: 'MDK-983',
-       dataLocacao: '01/01/2017',
-      dataDataEntrega: '1/02/2017',
+      dataManutencao: '01/01/2017',
       locado: true,
-      valor: 10098
+      seguro: 10098
     },
     {
       marca: 'CHEVROLET',
       modelo: 'Corsa',
       placa: 'IUY-987',
-      valor: 120,
-      dataLocacao: '1/06/2017',
-      dataDataEntrega: '12/08/2017',
+      dataManutencao: '1/06/2017',
+      seguro: 120,
       locado: true
     },
     {
@@ -31,20 +29,18 @@ export class VeiculosListagemComponent {
       marca: 'FORD',
       modelo: 'Fusion',
       placa: 'VBN-234',
-      dataLocacao: null,
-      dataDataEntrega: null,
+      dataManutencao: null,
       locado: false,
-      valor: 220
+      seguro: 220
     },
     {
       codigo: 4,
       marca: 'VOLKSWAGEN',
       modelo: 'Golf',
       placa: 'GAD-931',
-      dataLocacao: null,
-      dataDataEntrega: null,
+      dataManutencao: null,
       locado: false,
-      valor: 300
+      seguro: 300
     }
   ];
 }
