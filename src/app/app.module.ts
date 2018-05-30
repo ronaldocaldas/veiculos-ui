@@ -1,3 +1,4 @@
+import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,8 @@ import { VeiculosModule } from './veiculos/veiculos.module';
   ],
   imports: [
     BrowserModule,
-    VeiculosModule
+    VeiculosModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
