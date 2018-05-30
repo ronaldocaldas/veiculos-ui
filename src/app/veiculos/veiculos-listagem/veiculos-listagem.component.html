@@ -1,3 +1,42 @@
-<p>
-  veiculos-listagem works!
-</p>
+<div class="container">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <h1>Listagem de Veículos</h1>
+    </div>
+  </div>
+
+  <div class="ui g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="veiculos" emptyMessage="Nenhum veículo encontrado"
+       [responsive]="true" [paginator]="true"  rows="2">
+          <p-column field="marca" header="Marca"></p-column>
+          <p-column field="modelo" header="Modelo"></p-column>
+          <p-column field="placa" header="Placa" styleClass="col-placa"></p-column>
+          <p-column field="valor" header="Valor" styleClass="col-valor">
+              <ng-template let-valor="rowData" pTemplate="body">
+                  <span>{{valor.valor | currency:'BRL' }}</span>
+                </ng-template>
+          </p-column>
+          <p-column field="locado" header="Locado" styleClass="col-locado">
+              <ng-template let-loc="rowData" pTemplate="body">
+                  {{ loc.locado ? 'Locado' : 'Disponível' }}
+                </ng-template>
+          </p-column>
+          <p-column field="dataDataEntrega" header="Entrega" styleClass="col-data">
+              <ng-template let-lanc="rowData" pTemplate="body">
+                  {{lanc.dataDataEntrega | date:'dd/MM/yyyy'}}
+                </ng-template>
+          </p-column>
+          <p-column styleClass="col-acoes">
+              <ng-template pTemplate="body">
+                <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              </ng-template>
+            </p-column>
+      </p-dataTable>
+    </div>
+    <div class="ui-g-12">
+      <a pButton label="Novo Veículo"></a>
+    </div>
+  </div>
+</div>
