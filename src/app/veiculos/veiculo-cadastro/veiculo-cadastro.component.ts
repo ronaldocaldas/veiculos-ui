@@ -47,7 +47,12 @@ export class VeiculoCadastroComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-   console.log(this.route.snapshot.params['codigo']);
+    const codigoVeiculo = this.route.snapshot.params['codigo'];
+
+    if (codigoVeiculo) {
+      this.carregarVeiculo(codigoVeiculo);
+
+    }
   }
 
   salvar(form: FormControl) {
@@ -58,5 +63,16 @@ export class VeiculoCadastroComponent implements OnInit {
         this.veiculo = new Veiculo();
       })
       .catch(erro => this.errorHandler);
+  }
+
+  carregarVeiculo(codigo: number) {
+    this.veiculoService.buscarPorCodigo(codigo)
+      .then(veiculo => {
+        this.veiculo = veiculo;
+      });
+
+  }
+  get editando() {
+    return Boolean(this.veiculo.codigo);
   }
 }

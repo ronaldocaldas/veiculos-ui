@@ -39,6 +39,20 @@ export class VeiculoService {
 
   }
 
+  buscarPorCodigo(codigo: number): Promise<Veiculo> {
+    const headers = new Headers();
+
+    return this.http.get(`${this.veiculosUrl}/${codigo}`, { headers })
+      .toPromise()
+      .then(response => {
+        const veiculo = response.json() as Veiculo;
+
+        this.converterStringsParaDatas([veiculo]);
+
+        return veiculo;
+      });
+  }
+
   atualizar(veiculo: Veiculo): Promise<Veiculo> {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
