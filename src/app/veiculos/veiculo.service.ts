@@ -3,6 +3,8 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Veiculo } from '../core/model';
 
 import 'rxjs/add/operator/toPromise';
+import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +22,12 @@ export class VeiculoService {
       .then(response => response.json());
   }
 
-  adicionar(lancamento: Veiculo): Promise<Veiculo> {
+  adicionar(veiculo: Veiculo): Promise<Veiculo> {
     const headers = new Headers();
-    headers.append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==');
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(this.veiculosUrl,
-      JSON.stringify(lancamento), { headers })
+      JSON.stringify(veiculo), { headers })
       .toPromise()
       .then(response => response.json().content);
   }
@@ -36,6 +37,29 @@ export class VeiculoService {
     .toPromise()
     .then(() => null);
 
+  }
+
+  atualizar(veiculo: Veiculo): Promise<Veiculo> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.put(`${this.veiculosUrl}/${veiculo.codigo}`,
+        JSON.stringify(veiculo), { headers })
+      .toPromise()
+      .then(response => {
+        const veiculoAlterado = response.json() as Veiculo;
+
+        this.converterStringsParaDatas([veiculoAlterado]);
+
+        return veiculoAlterado;
+      });
+  }
+  private converterStringsParaDatas(veiculos: Veiculo[]) {
+    for (const veiculo of veiculos) {
+      veiculo.manutencao = moment(veiculo.manutencao,
+        'YYYY-MM-DD').toDate();
+
+    }
   }
 
 }
