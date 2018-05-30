@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Veiculo } from '../core/model';
 
+import 'rxjs/add/operator/toPromise';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +14,10 @@ export class VeiculoService {
   constructor(private http: Http) { }
 
   pesquisar(): Promise<any> {
-    return this.http.get(this.veiculosUrl)
+    const headers = new Headers();
+    return this.http.get(this.veiculosUrl, { headers })
       .toPromise()
-      .then(response => response.json().content);
+      .then(response => response.json());
   }
 
   adicionar(lancamento: Veiculo): Promise<Veiculo> {
@@ -23,9 +26,9 @@ export class VeiculoService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.post(this.veiculosUrl,
-        JSON.stringify(lancamento), { headers })
+      JSON.stringify(lancamento), { headers })
       .toPromise()
-      .then(response => response.json());
+      .then(response => response.json().content);
   }
 
 }

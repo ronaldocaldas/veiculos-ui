@@ -30,12 +30,12 @@ export class VeiculoCadastroComponent implements OnInit {
   ];
 
   marcas = [
-    { label: 'Ford', value: 'FORD' },
-    { label: 'Volkswagen', value: 'VOLK' },
-    { label: 'Chevrolet', value: 'CHEV' },
-    { label: 'Fiat', value: 'FIAT' },
-    { label: 'Honda', value: 'HOND' },
-    { label: 'Hyundai', value: 'HYUD' },
+    { label: 'Ford', value: 'Ford' },
+    { label: 'Volkswagen', value: 'Volkswagen' },
+    { label: 'Chevrolet', value: 'Chevrolet' },
+    { label: 'Fiat', value: 'Fiat' },
+    { label: 'Honda', value: 'Honda' },
+    { label: 'Hyundai', value: 'Hyundai' },
   ];
 
   veiculo = new Veiculo();

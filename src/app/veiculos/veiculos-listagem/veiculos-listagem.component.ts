@@ -14,10 +14,9 @@ export class VeiculosListagemComponent implements OnInit {
 
   veiculos = [];
 
-  constructor(
-    private veiculosService: VeiculoService) { }
+  constructor(private veiculosService: VeiculoService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.pesquisar();
   }
 
