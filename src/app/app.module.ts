@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import {TabViewModule} from 'primeng/tabview';
 
 import { AppComponent } from './app.component';
+import { VeiculosModule } from './veiculos/veiculos.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    TabViewModule
+    VeiculosModule
   ],
   providers: [],
   bootstrap: [AppComponent]
