@@ -1,6 +1,6 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastyService } from 'ng2-toasty';
 import { Veiculo } from '../../core/model';
@@ -44,7 +44,8 @@ export class VeiculoCadastroComponent implements OnInit {
     private veiculoService: VeiculoService,
     private toasty: ToastyService,
     private errorHandler: ErrorHandlerService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     const codigoVeiculo = this.route.snapshot.params['codigo'];

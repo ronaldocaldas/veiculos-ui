@@ -19,9 +19,8 @@ import { VeiculoCadastroComponent } from './veiculos/veiculo-cadastro/veiculo-ca
 registerLocaleData(localePt, 'pt-BR');
 
 const routes: Routes = [
-  {
-    path: 'veiculos', component: VeiculosListagemComponent
-  },
+  {path: '', redirectTo: 'veiculos', pathMatch: 'full'},
+  {path: 'veiculos', component: VeiculosListagemComponent},
   { path: 'veiculos/novo', component: VeiculoCadastroComponent },
   { path: 'veiculos/:codigo', component: VeiculoCadastroComponent }
 ];
