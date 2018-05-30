@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: 'veiculos', component: VeiculosListagemComponent
   },
-  { path: 'veiculos/novo', component: VeiculoCadastroComponent }
+  { path: 'veiculos/novo', component: VeiculoCadastroComponent },
+  { path: 'veiculos/:codigo', component: VeiculoCadastroComponent }
 ];
 
 @NgModule({

@@ -29,7 +29,8 @@
           </p-column>
           <p-column styleClass="col-acoes">
               <ng-template let-vei="rowData" pTemplate="body">
-                <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+                [routerLink]="['/veiculos', vei.codigo]"></a>
                 <button pButton icon="fa-trash" pTooltip="Excluir"
                 tooltipPosition="top" (click)="confirmarExclusao(vei)" ></button>
               </ng-template>
