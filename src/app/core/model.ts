@@ -7,5 +7,5 @@ export class Veiculo {
   marca: string;
   cambio: string;
   tipo: string;
-  observacao: string;
+  observacoes: string;
 }

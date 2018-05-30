@@ -55,7 +55,8 @@ export class VeiculoCadastroComponent implements OnInit {
     }
   }
 
-  salvar(form: FormControl) {
+
+  adicionarVeiculo(form: FormControl) {
     this.veiculoService.adicionar(this.veiculo)
       .then(() => {
         this.toasty.success('Veículo adicionado com sucesso!');
@@ -69,9 +70,26 @@ export class VeiculoCadastroComponent implements OnInit {
     this.veiculoService.buscarPorCodigo(codigo)
       .then(veiculo => {
         this.veiculo = veiculo;
-      });
+      })
+      .catch(erro => this.errorHandler.handle(erro));
 
   }
+  salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarVeiculo(form);
+    } else {
+      this.adicionarVeiculo(form);
+    }
+  }
+
+  atualizarVeiculo(form: FormControl) {
+    this.veiculoService.atualizar(this.veiculo)
+      .then(veiculo => {
+        this.veiculo = veiculo;
+        this.toasty.success('Veículo alterado com sucesso!');
+      }).catch(erro => this.errorHandler.handle(erro));
+  }
+
   get editando() {
     return Boolean(this.veiculo.codigo);
   }

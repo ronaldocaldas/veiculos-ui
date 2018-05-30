@@ -29,29 +29,35 @@ label {
   }
 }
 
-.col-valor {
-  width: 120px;
-  text-align: right;
-}
-
-.col-data {
+.col-marca {
   width: 100px;
   text-align: center;
 }
-
-.col-acoes {
+.col-modelo {
   width: 120px;
   text-align: center;
 }
-
 .col-placa {
   width: 100px;
   text-align: center;
+}
+.col-valor {
+  width: 120px;
+  text-align: right;
 }
 .col-locado {
   width: 90px;
   text-align: center;
 }
+.col-data {
+  width: 100px;
+  text-align: center;
+}
+.col-acoes {
+  width: 120px;
+  text-align: center;
+}
+
 .ui-button {
   margin-right: 5px;
 }

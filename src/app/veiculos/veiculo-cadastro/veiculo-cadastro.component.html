@@ -67,14 +67,14 @@
         <label>Tipo veículo</label>
         <p-dropdown [options]="tipos" placeholder="Selecione"
           [autoWidth]="false"  name="tipo"
-          name="tipo" ngModel #marca required
+          name="tipo" ngModel #tipo required
           [(ngModel)]="veiculo.tipo" ngModel #tipo required>
         </p-dropdown>
       </div>
 
       <div class="ui-g-12 ui-fluid">
         <label>Observação</label>
-        <textarea pInputTextarea rows="3"></textarea>
+        <textarea pInputTextarea rows="3"  [(ngModel)]="veiculo.observacoes"  name="observacoes" ngModel #observacoes></textarea>
       </div>
 
       <div class="ui-g-12">
