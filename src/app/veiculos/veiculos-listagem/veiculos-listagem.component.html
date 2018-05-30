@@ -7,43 +7,41 @@
 
   <div class="ui g">
     <div class="ui-g-12">
-      <p-dataTable [value]="veiculos" emptyMessage="Nenhum veículo encontrado"
-       [responsive]="true" [paginator]="true"  rows="2">
-          <p-column field="marca" header="Marca" styleClass="col-marca"></p-column>
-          <p-column field="modelo" header="Modelo" styleClass="col-modelo"></p-column>
-          <p-column field="observacoes" header="Observações"></p-column>
+      <p-dataTable [value]="veiculos" emptyMessage="Nenhum veículo encontrado" [responsive]="true" [paginator]="true" rows="2">
+        <p-column field="modelo" header="Modelo" styleClass="col-modelo"></p-column>
+        <p-column field="observacoes" header="Observações"></p-column>
 
-          <p-column field="placa" header="Placa" styleClass="col-placa"></p-column>
-          <p-column field="valor" header="Valor" styleClass="col-valor">
-              <ng-template let-valor="rowData" pTemplate="body">
-                  <span>{{valor.valor | currency:'BRL'}}</span>
-                </ng-template>
-          </p-column>
-          <p-column field="locado" header="Locado" styleClass="col-locado">
-              <ng-template let-loc="rowData" pTemplate="body">
-                  {{ loc.locado ? 'Locado' : 'Disponível' }}
-                </ng-template>
-          </p-column>
-
-          name="vencimentoInicio" [(ngModel)]="filtro.dataVencimentoInicio"
-
-          <p-column field="dataDataEntrega" header="Entrega" styleClass="col-data">
-              <ng-template let-lanc="rowData"   pTemplate="body">
-                  {{lanc.manutencao | date:'dd/MM/yyyy'}}
-                </ng-template>
-          </p-column>
-          <p-column styleClass="col-acoes">
-              <ng-template let-vei="rowData" pTemplate="body">
-                <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
-                [routerLink]="['/veiculos', vei.codigo]"></a>
-                <button pButton icon="fa-trash" pTooltip="Excluir"
-                tooltipPosition="top" (click)="confirmarExclusao(vei)" ></button>
+        <p-column field="placa" header="Placa" styleClass="col-placa"></p-column>
+        <p-column field="valor" header="Valor" styleClass="col-valor">
+          <ng-template let-valor="rowData" pTemplate="body">
+            <span>{{valor.valor | currency:'BRL'}}</span>
+          </ng-template>
+        </p-column>
+        <p-column field="locado" header="Locado" styleClass="col-locado">
+            <ng-template let-loc="rowData" pTemplate="body">
+                {{ loc.locado ? 'Locado' : 'Disponível' }}
               </ng-template>
-            </p-column>
+        </p-column>
+        <p-column field="dataDataEntrega" header="Entrega" styleClass="col-data">
+            <ng-template let-lanc="rowData"   pTemplate="body">
+                {{lanc.manutencao | date:'dd/MM/yyyy'}}
+              </ng-template>
+        </p-column>
+        <p-column styleClass="col-acoes">
+            <ng-template let-vei="rowData" pTemplate="body">
+              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
+              [routerLink]="['/veiculos', vei.codigo]"></a>
+              <button pButton icon="fa-trash" pTooltip="Excluir"
+              tooltipPosition="top" (click)="confirmarExclusao(vei)" ></button>
+            </ng-template>
+          </p-column>
+
       </p-dataTable>
     </div>
+
     <div class="ui-g-12">
       <a pButton label="Novo Veículo" routerLink="/veiculos/novo"></a>
     </div>
+
   </div>
 </div>
