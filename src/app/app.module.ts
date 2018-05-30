@@ -1,3 +1,4 @@
+import { AppRountingModule } from './app-routing.modules';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
@@ -19,15 +20,6 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 
 registerLocaleData(localePt, 'pt-BR');
 
-const routes: Routes = [
-  { path: '', redirectTo: 'veiculos', pathMatch: 'full' },
-  { path: 'veiculos', component: VeiculosListagemComponent },
-  { path: 'veiculos/novo', component: VeiculoCadastroComponent },
-  { path: 'veiculos/:codigo', component: VeiculoCadastroComponent },
-  { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
-  { path: '**', redirectTo: 'pagina-nao-encontrada' }
-];
-
 @NgModule({
   declarations: [
     AppComponent
@@ -36,10 +28,11 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
 
     VeiculosModule,
-    CoreModule
+    CoreModule,
+    AppRountingModule
+
   ],
   bootstrap: [AppComponent]
 })
