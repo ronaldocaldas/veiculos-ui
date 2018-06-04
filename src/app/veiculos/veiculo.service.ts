@@ -8,7 +8,7 @@ import * as moment from 'moment';
 export class VeiculoFiltro {
   modelo: string;
   pagina = 0;
-  itensPorPagina = 2;
+  itensPorPagina = 5;
 }
 
 @Injectable({

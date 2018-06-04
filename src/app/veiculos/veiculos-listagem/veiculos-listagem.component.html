@@ -16,10 +16,11 @@
 
   <div class="ui g">
     <div class="ui-g-12">
-      <p-dataTable [value]="veiculos" emptyMessage="Nenhum veículo encontrado" [responsive]="true" [paginator]="true" rows="2">
+      <p-dataTable [value]="veiculos" [paginator]="true" [rows]="filtro.itensPorPagina" [responsive]="true"
+      emptyMessage="Nenhum veículo encontrado" [lazy]="true" [totalRecords]="totalRegistros"
+      (onLazyLoad)="aoMudarPagina($event)" #tabela>
         <p-column field="modelo" header="Modelo" styleClass="col-modelo"></p-column>
         <p-column field="observacoes" header="Observações"></p-column>
-
         <p-column field="placa" header="Placa" styleClass="col-placa"></p-column>
         <p-column field="valor" header="Valor" styleClass="col-valor">
           <ng-template let-valor="rowData" pTemplate="body">

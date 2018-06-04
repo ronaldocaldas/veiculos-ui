@@ -1,4 +1,4 @@
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 
 import { ToastyService } from 'ng2-toasty';
 
@@ -19,6 +19,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 })
 export class VeiculosListagemComponent implements OnInit {
 
+  totalRegistros = 0;
   filtro = new VeiculoFiltro();
   veiculos = [];
   @ViewChild('tabela') grid;
@@ -31,16 +32,22 @@ export class VeiculosListagemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.pesquisar();
-    this.title.setTitle('Pesquisa de lancamentos');
+    this.title.setTitle('Pesquisa de veículos');
   }
 
-  pesquisar() {
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
     this.veiculosService.pesquisar(this.filtro)
       .then(resultado => {
-          this.veiculos = resultado.veiculos;
+        this.totalRegistros = resultado.total;
+        this.veiculos = resultado.veiculos;
       })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
   }
 
   confirmarExclusao(veiculo: any) {
@@ -54,7 +61,7 @@ export class VeiculosListagemComponent implements OnInit {
   excluir(veiculo: any) {
     this.veiculosService.excluir(veiculo.codigo)
       .then(() => {
-        this.pesquisar();
+       this.grid.first = 0;
       })
       .catch(erro => this.errorHandler.handle(erro));
 
