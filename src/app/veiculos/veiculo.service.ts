@@ -1,4 +1,3 @@
-import { VeiculoFiltro } from './veiculo.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Veiculo } from '../core/model';
@@ -6,8 +5,10 @@ import { Veiculo } from '../core/model';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
-export interface VeiculoFiltro {
+export class VeiculoFiltro {
   modelo: string;
+  pagina = 0;
+  itensPorPagina = 2;
 }
 
 @Injectable({
@@ -23,6 +24,9 @@ export class VeiculoService {
     const params = new URLSearchParams();
     const headers = new Headers();
 
+    params.set('page', filtro.pagina.toString());
+    params.set('size', filtro.itensPorPagina.toString());
+
     if (filtro.modelo) {
       params.set('modelo', filtro.modelo);
 
@@ -30,7 +34,17 @@ export class VeiculoService {
 
     return this.http.get(this.veiculosUrl, { headers, search: params })
       .toPromise()
-      .then(response => response.json().content);
+      .then(response => {
+        const responseJson = response.json();
+        const veiculos = responseJson.content;
+
+        const resultado = {
+          veiculos,
+          total: responseJson.totalElements
+        };
+
+        return resultado;
+      });
   }
 
   adicionar(veiculo: Veiculo): Promise<Veiculo> {

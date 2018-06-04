@@ -6,7 +6,7 @@ import { Headers, Http } from '@angular/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { VeiculoService } from './../veiculo.service';
+import { VeiculoService, VeiculoFiltro } from './../veiculo.service';
 import { Veiculo } from './../../core/model';
 import { ErrorHandlerService } from './../../core/error-handler.service';
 
@@ -19,8 +19,7 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 })
 export class VeiculosListagemComponent implements OnInit {
 
-
-  modelo: string;
+  filtro = new VeiculoFiltro();
   veiculos = [];
   @ViewChild('tabela') grid;
 
@@ -37,8 +36,10 @@ export class VeiculosListagemComponent implements OnInit {
   }
 
   pesquisar() {
-    this.veiculosService.pesquisar({modelo: this.modelo})
-      .then(veiculos => this.veiculos = veiculos)
+    this.veiculosService.pesquisar(this.filtro)
+      .then(resultado => {
+          this.veiculos = resultado.veiculos;
+      })
       .catch(erro => this.errorHandler.handle(erro));
   }
 
