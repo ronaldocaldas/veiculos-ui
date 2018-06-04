@@ -1,3 +1,4 @@
+import { VeiculoFiltro } from './veiculo.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Veiculo } from '../core/model';
@@ -5,6 +6,9 @@ import { Veiculo } from '../core/model';
 import 'rxjs/add/operator/toPromise';
 import * as moment from 'moment';
 
+export interface VeiculoFiltro {
+  modelo: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +19,18 @@ export class VeiculoService {
 
   constructor(private http: Http) { }
 
-  pesquisar(): Promise<any> {
+  pesquisar(filtro: VeiculoFiltro): Promise<any> {
+    const params = new URLSearchParams();
     const headers = new Headers();
-    return this.http.get(this.veiculosUrl, { headers })
+
+    if (filtro.modelo) {
+      params.set('modelo', filtro.modelo);
+
+    }
+
+    return this.http.get(this.veiculosUrl, { headers, search: params })
       .toPromise()
-      .then(response => response.json());
+      .then(response => response.json().content);
   }
 
   adicionar(veiculo: Veiculo): Promise<Veiculo> {
@@ -34,8 +45,8 @@ export class VeiculoService {
 
   excluir(codigo: number): Promise<any> {
     return this.http.delete(`${this.veiculosUrl}/${codigo}`)
-    .toPromise()
-    .then(() => null);
+      .toPromise()
+      .then(() => null);
 
   }
 
@@ -58,7 +69,7 @@ export class VeiculoService {
     headers.append('Content-Type', 'application/json');
 
     return this.http.put(`${this.veiculosUrl}/${veiculo.codigo}`,
-        JSON.stringify(veiculo), { headers })
+      JSON.stringify(veiculo), { headers })
       .toPromise()
       .then(response => {
         const veiculoAlterado = response.json() as Veiculo;

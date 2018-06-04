@@ -1,8 +1,17 @@
 <div class="container">
   <div class="ui-g">
-    <div class="ui-g-12">
-      <h1>Veículos</h1>
-    </div>
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="ui-g-12">
+        <h1>Veículos</h1>
+      </div>
+      <div class="ui-g-12 ui-md-12 ui-fluid">
+        <label>Modelo</label>
+        <input pInputText type="text" name="modelo" [(ngModel)]="modelo">
+      </div>
+      <div class="ui-g-4 ui-md-4 ui-fluid">
+        <button pButton type="submit" label="Pesquisar"> </button>
+      </div>
+    </form>
   </div>
 
   <div class="ui g">
@@ -18,23 +27,21 @@
           </ng-template>
         </p-column>
         <p-column field="locado" header="Locado" styleClass="col-locado">
-            <ng-template let-loc="rowData" pTemplate="body">
-                {{ loc.locado ? 'Locado' : 'Disponível' }}
-              </ng-template>
+          <ng-template let-loc="rowData" pTemplate="body">
+            {{ loc.locado ? 'Locado' : 'Disponível' }}
+          </ng-template>
         </p-column>
         <p-column field="dataDataEntrega" header="Entrega" styleClass="col-data">
-            <ng-template let-lanc="rowData"   pTemplate="body">
-                {{lanc.manutencao | date:'dd/MM/yyyy'}}
-              </ng-template>
+          <ng-template let-lanc="rowData" pTemplate="body">
+            {{lanc.manutencao | date:'dd/MM/yyyy'}}
+          </ng-template>
         </p-column>
         <p-column styleClass="col-acoes">
-            <ng-template let-vei="rowData" pTemplate="body">
-              <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top"
-              [routerLink]="['/veiculos', vei.codigo]"></a>
-              <button pButton icon="fa-trash" pTooltip="Excluir"
-              tooltipPosition="top" (click)="confirmarExclusao(vei)" ></button>
-            </ng-template>
-          </p-column>
+          <ng-template let-vei="rowData" pTemplate="body">
+            <a pButton icon="fa-pencil" pTooltip="Editar" tooltipPosition="top" [routerLink]="['/veiculos', vei.codigo]"></a>
+            <button pButton icon="fa-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(vei)"></button>
+          </ng-template>
+        </p-column>
 
       </p-dataTable>
     </div>

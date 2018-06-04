@@ -19,6 +19,8 @@ import { ErrorHandlerService } from './../../core/error-handler.service';
 })
 export class VeiculosListagemComponent implements OnInit {
 
+
+  modelo: string;
   veiculos = [];
   @ViewChild('tabela') grid;
 
@@ -35,7 +37,7 @@ export class VeiculosListagemComponent implements OnInit {
   }
 
   pesquisar() {
-    this.veiculosService.pesquisar()
+    this.veiculosService.pesquisar({modelo: this.modelo})
       .then(veiculos => this.veiculos = veiculos)
       .catch(erro => this.errorHandler.handle(erro));
   }
